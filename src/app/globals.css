@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add this to your global CSS file or a specific CSS module */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header {
+  position: fixed;
+  width: 100%;
+  border: 1px solid gray;
+  transition: 0.3s ease;
+  background-color: rgba(128, 128, 128, 0.9);
+  z-index: 10;
+  /* animation */
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transform: translateY(-100%);
+}
+main {
+  padding-top: 70px;
+  flex-grow: 1;
+}
+footer {
+  margin-top: auto;
+  background-color: rgba(128, 128, 128, 0.3);
+  div {
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.mobile-menu {
+  display: flex;
+  background-color: rgba(128, 128, 128, 0.9);
+}
+
+.show-header {
+  transform: translateY(0px);
+}
