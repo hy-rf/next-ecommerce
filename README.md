@@ -20,8 +20,4 @@ This is a modern e-shop website built with Next.js, featuring Google login, cart
 - TypeScript
 - Tailwind CSS
 - Firebase (Authentication and Firestore)
-- MetaMask for payments
-
-## Getting Started
-
-First, run the development server:
+- Paypal for payments
