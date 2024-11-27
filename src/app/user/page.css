@@ -1,0 +1,14 @@
+.no-user-content {
+  text-align: center;
+  padding-top: 2.5rem;
+}
+
+.user-page-wrapper {
+  max-width: 56rem;
+  margin: 2.5rem auto 0;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  color: var(--text-color-normal);
+}

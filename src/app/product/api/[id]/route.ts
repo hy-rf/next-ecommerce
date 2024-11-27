@@ -13,7 +13,7 @@ export async function GET(
     return Response.json({ error: "Missing or invalid 'id' parameter" });
   }
 
-  const productRef = doc(db, "products", id);
+  const productRef = doc(db, "product", id);
   const productSnap = await getDoc(productRef);
 
   if (productSnap.exists()) {

@@ -1,9 +1,11 @@
 import "./globals.css";
-import "./reset.css";
+import "./normalize.css";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import UserProvider from "@/components/UserProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,21 +21,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="XIyWEArCncajvy-xk0teFmCszuaKGhKOLmUeUval8uY"
-        />
-      </head>
-      <body>
-        <Header />
-        <main className="container mx-auto px-4 py-8 flex-grow pt-16">
-          {children}
-        </main>
-        <Footer />
-        <Toaster position="top-center" />
-      </body>
-    </html>
+    <UserProvider>
+      <html lang="en">
+        <head>
+          <meta
+            name="google-site-verification"
+            content="XIyWEArCncajvy-xk0teFmCszuaKGhKOLmUeUval8uY"
+          />
+        </head>
+        <body>
+          <AppRouterCacheProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <Toaster position="top-center" />
+          </AppRouterCacheProvider>
+        </body>
+      </html>
+    </UserProvider>
   );
 }

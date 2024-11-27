@@ -4,34 +4,43 @@
 
 /* Add this to your global CSS file or a specific CSS module */
 
-*,
+/* *,
 *::after,
 *::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+} */
+
+:root {
+  --sm-breakpoint: 640px;
+  --md-breakpoint: 768px;
+  --lg-breakpoint: 1024px;
+  --xl-breakpoint: 1280px;
+  --xxl-breakpoint: 1536px;
 }
+
+html {
+  --text-color-normal: #0a244d;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html[data-theme="dark"] {
+  --text-color-normal: hsl(210, 10%, 62%);
+  --text-color-light: hsl(210, 15%, 35%);
+  --text-color-richer: hsl(210, 50%, 72%);
+  --text-color-highlight: hsl(25, 70%, 45%);
+}
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-header {
-  position: fixed;
-  width: 100%;
-  border: 1px solid gray;
-  transition: 0.3s ease;
-  background-color: rgba(128, 128, 128, 0.9);
-  z-index: 10;
-  /* animation */
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  transform: translateY(-100%);
-}
+
 main {
   padding-top: 70px;
-  flex-grow: 1;
 }
 footer {
   margin-top: auto;
@@ -46,11 +55,8 @@ footer {
   }
 }
 
-.mobile-menu {
-  display: flex;
-  background-color: rgba(128, 128, 128, 0.9);
-}
-
-.show-header {
-  transform: translateY(0px);
+h1 {
+  font-size: 1.875rem; /* Equivalent to text-3xl */
+  font-weight: 700; /* Equivalent to font-bold */
+  margin-bottom: 1.5rem; /* Equivalent to mb-6 */
 }

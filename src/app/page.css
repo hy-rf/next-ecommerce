@@ -5,16 +5,96 @@
 }
 
 .carousel img {
+  display: block;
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
 }
 
-.carousel button {
+/* Add this to your page.css */
+.carousel-button {
   position: absolute;
+  top: 50%;
   transform: translateY(-50%);
+  background-color: #4b5563; /* equivalent to bg-gray-600 */
+  color: white; /* equivalent to text-white */
+  padding: 0.25rem 0.25rem; /* equivalent to px-1 py-2 */
+  z-index: 9;
+}
+
+.left-button {
+  left: 0;
+}
+
+.right-button {
+  right: 0;
+}
+
+.carousel-wrapper {
+  z-index: -100;
+  display: flex;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 30rem;
+  padding: 0;
+  justify-content: center;
+  flex: 0 0 100%;
+
+  img {
+    height: 100%;
+  }
+}
+
+.carousel-item-detail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  top: -6rem;
+  width: 50%;
+  left: 0rem;
+  color: white !important;
+  height: 6rem;
+  padding: 0.5rem;
+  backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
+  border-radius: 1rem;
+
+  p {
+    margin-top: auto;
+  }
+}
+
+.product-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.dot {
+  position: relative;
+  top: -0.5rem;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin: 0 5px;
   cursor: pointer;
+  z-index: 100;
+  backdrop-filter: blur(90px);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.9);
 }

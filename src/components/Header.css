@@ -1,0 +1,107 @@
+header {
+  position: fixed;
+  width: 100%;
+  transition: 0.3s ease;
+  height: 70px;
+  background-color: rgba(128, 128, 128, 0.9);
+  z-index: 10;
+  /* animation */
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transform: translateY(-100%);
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    max-width: 100%; /* This is to mimic the container behavior */
+  }
+}
+
+.header-link {
+  font-size: 1.6rem; /* 2xl */
+  font-weight: bold;
+  text-decoration: none; /* To remove underline if needed */
+}
+
+.toggle-menu-button {
+  padding: 0.5rem;
+}
+
+.links-container {
+  display: none;
+}
+
+/* Add this to your Header.css */
+.mobile-menu {
+  position: fixed; /* equivalent to fixed */
+  top: 70px; /* equivalent to top-18 (assuming 1rem = 4) */
+  padding-top: 1rem;
+  background-color: rgba(
+    75,
+    85,
+    99,
+    0.9
+  ); /* equivalent to bg-opacity-90 (bg-gray-600 with 90% opacity) */
+  display: flex; /* equivalent to flex */
+  flex-direction: column; /* equivalent to flex-col */
+  align-items: center; /* equivalent to items-center */
+  justify-content: flex-start; /* equivalent to justify-start */
+  height: 100vh; /* equivalent to h-svh (assuming full viewport height) */
+  width: 100vw; /* equivalent to w-full */
+  z-index: 20; /* equivalent to z-20 */
+  /* opacity: 0; */
+  animation: show;
+  animation-duration: 0.5s;
+
+  a {
+    color: white; /* equivalent to text-white */
+    font-size: 1.125rem; /* equivalent to text-lg */
+    margin-bottom: 1rem; /* equivalent to mb-4 */
+  }
+
+  button {
+    color: white; /* equivalent to text-white */
+    font-size: 1.125rem; /* equivalent to text-lg */
+    margin-bottom: 1rem; /* equivalent to mb-4 */
+  }
+}
+
+.hide {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.show-header {
+  transform: translateY(0px);
+}
+
+/* Media query for medium screens and above */
+@media (min-width: 768px) {
+  .toggle-menu-button {
+    display: none;
+  }
+
+  .links-container {
+    display: flex; /* equivalent to flex */
+    flex-direction: row; /* equivalent to flex-row */
+    align-items: center; /* equivalent to items-center */
+
+    a {
+      margin-right: 1rem;
+    }
+  }
+}

@@ -1,97 +1,96 @@
-"use client";
-import { useState, useEffect } from "react";
 import { db } from "@/lib/firebase";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
-import { Cart, Order, Product, User } from "@/models";
-import toast from "react-hot-toast";
+import { collection, getDocs } from "firebase/firestore";
+import { Product } from "@/models";
+async function getProducts(): Promise<Product[]> {
+  const productsRef = collection(db, "product");
+  const productsSnapshot = await getDocs(productsRef);
+  const products = productsSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as Product[];
+  return products;
+}
+export const dynamic = "force-dynamic";
+export default async function Page() {
+  const products: Product[] = await getProducts();
+  // const [users, setUsers] = useState<User[]>([]);
+  // const [carts, setCarts] = useState<Cart[]>([]);
+  // const [orders, setOrders] = useState<Order[]>([]);
 
-export default function BackstageProductPage() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
-  const [carts, setCarts] = useState<Cart[]>([]);
-  const [orders, setOrders] = useState<Order[]>([]);
+  // useEffect(() => {
+  //   fetchProducts();
+  //   fetchUsers();
+  //   fetchCarts();
+  //   fetchOrders();
+  // }, []);
 
-  useEffect(() => {
-    fetchProducts();
-    fetchUsers();
-    fetchCarts();
-    fetchOrders();
-  }, []);
+  // const fetchProducts = async () => {
+  //   const productsCollection = collection(db, "product");
+  //   const productSnapshot = await getDocs(productsCollection);
+  //   const products = productSnapshot.docs.map((doc) => ({
+  //     id: doc.id,
+  //     ...doc.data(),
+  //   })) as Product[];
+  //   setProducts(products);
+  // };
 
-  const fetchProducts = async () => {
-    const productsCollection = collection(db, "products");
-    const productSnapshot = await getDocs(productsCollection);
-    const products = productSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as Product[];
-    setProducts(products);
-  };
+  // const fetchUsers = async () => {
+  //   const usersCollection = collection(db, "users");
+  //   const userSnapshot = await getDocs(usersCollection);
+  //   const users = userSnapshot.docs.map((doc) => ({
+  //     id: doc.id,
+  //     ...doc.data(),
+  //   })) as User[];
+  //   setUsers(users);
+  // };
 
-  const fetchUsers = async () => {
-    const usersCollection = collection(db, "users");
-    const userSnapshot = await getDocs(usersCollection);
-    const users = userSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as User[];
-    setUsers(users);
-  };
+  // const fetchCarts = async () => {
+  //   const cartsCollection = collection(db, "carts");
+  //   const cartSnapshot = await getDocs(cartsCollection);
+  //   const carts = cartSnapshot.docs.map((doc) => ({
+  //     id: doc.id,
+  //     ...doc.data(),
+  //   })) as Cart[];
+  //   setCarts(carts);
+  // };
 
-  const fetchCarts = async () => {
-    const cartsCollection = collection(db, "carts");
-    const cartSnapshot = await getDocs(cartsCollection);
-    const carts = cartSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as Cart[];
-    setCarts(carts);
-  };
+  // const fetchOrders = async () => {
+  //   const ordersCollection = collection(db, "orders");
+  //   const orderSnapshot = await getDocs(ordersCollection);
+  //   const orders = orderSnapshot.docs.map((doc) => ({
+  //     id: doc.id,
+  //     ...doc.data(),
+  //   })) as Order[];
+  //   setOrders(orders);
+  // };
 
-  const fetchOrders = async () => {
-    const ordersCollection = collection(db, "orders");
-    const orderSnapshot = await getDocs(ordersCollection);
-    const orders = orderSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as Order[];
-    setOrders(orders);
-  };
+  // const handleAddProduct = async (newProduct: Product) => {
+  //   const productsCollection = collection(db, "product");
+  //   await addDoc(productsCollection, newProduct);
+  //   fetchProducts();
+  // };
 
-  const handleAddProduct = async (newProduct: Product) => {
-    const productsCollection = collection(db, "products");
-    await addDoc(productsCollection, newProduct);
-    fetchProducts();
-  };
+  // const handleUpdateProduct = async (id: string, updatedProduct: Product) => {
+  //   try {
+  //     const productDoc = doc(db, "product", id);
+  //     await updateDoc(productDoc, { ...updatedProduct });
+  //     fetchProducts();
+  //     toast.success("update success");
+  //   } catch (error) {
+  //     toast.error("fail" + error);
+  //   }
+  // };
 
-  const handleUpdateProduct = async (id: string, updatedProduct: Product) => {
-    try {
-      const productDoc = doc(db, "products", id);
-      await updateDoc(productDoc, { ...updatedProduct });
-      fetchProducts();
-      toast.success("update success");
-    } catch (error) {
-      toast.error("fail" + error);
-    }
-  };
-
-  const handleDeleteProduct = async (id: string) => {
-    try {
-      const productDoc = doc(db, "products", id);
-      await deleteDoc(productDoc);
-      toast.success("delete success");
-      fetchProducts();
-    } catch (error) {
-      toast.error("fail" + error);
-    }
-  };
+  // const handleDeleteProduct = async (id: string) => {
+  //   try {
+  //     const productDoc = doc(db, "product", id);
+  //     await deleteDoc(productDoc);
+  //     toast.success("delete success");
+  //     fetchProducts();
+  //   } catch (error) {
+  //     toast.error("fail" + error);
+  //   }
+  // };
 
   return (
     <div className="p-6">
@@ -109,16 +108,18 @@ export default function BackstageProductPage() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {products.map((product: Product) => (
               <tr key={product.id}>
-                <td className="py-2 px-4 border-b">{product.name}</td>
+                <td className="py-2 px-4 border-b">
+                  <a href={`/product/${product.id}`}>{product.name}</a>
+                </td>
                 <td className="py-2 px-4 border-b">{product.description}</td>
                 <td className="py-2 px-4 border-b">
                   ${product.price.toFixed(2)}
                 </td>
                 <td className="py-2 px-4 border-b">{product.category}</td>
                 <td className="py-2 px-4 border-b">
-                  <button
+                  {/* <button
                     onClick={() => handleUpdateProduct(product.id, product)}
                     className="text-blue-500 hover:underline"
                   >
@@ -129,7 +130,7 @@ export default function BackstageProductPage() {
                     className="ml-2 text-red-500 hover:underline"
                   >
                     Delete
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}

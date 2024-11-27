@@ -1,15 +1,16 @@
-# E-Commerce with Next.js
+# Modern E-Shop with Next.js
 
-This is a e-commerce website built with Next.js, featuring Google login, cart functionality, and SEO integration.
+This is a modern e-shop website built with Next.js, featuring Google login, cart functionality, and MetaMask payment integration.
 
 ## Features
 
 - Modern UI look
 - Google login (single sign-on method)
 - Product listing
-- Product page with SEO optimized
 - Add product to cart
 - Manage cart (plus/minus/remove products)
+- Checkout process
+- MetaMask payment integration
 - Data storage in Google Firestore
 
 ## Tech Stack
@@ -19,26 +20,8 @@ This is a e-commerce website built with Next.js, featuring Google login, cart fu
 - TypeScript
 - Tailwind CSS
 - Firebase (Authentication and Firestore)
+- MetaMask for payments
 
 ## Getting Started
 
-Environment variables:
-
-Create .env.production at root directory then fill it like .env.example file with your firebase keys.
-
-Install dependencies:
-```
-npm install
-```
-Run dev server:
-```
-npm run dev
-```
-Build project:
-```
-npm run build
-```
-Start server:
-```
-npm run start
-```
+First, run the development server:

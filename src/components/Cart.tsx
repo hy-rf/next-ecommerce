@@ -1,8 +1,6 @@
 "use client";
 import { useCart } from "@/lib/cart";
-import { useMetaMask } from "@/lib/metamask";
 import Link from "next/link";
-import ProductCard from "./ProductCard";
 
 export default function Cart() {
   const { cart, updateQuantity, removeFromCart, placeOrder } = useCart();

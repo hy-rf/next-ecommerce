@@ -1,4 +1,6 @@
 import { Product } from "@/models";
+import { Metadata } from "next";
+import AddToCartButton from "./_component/AddToCartButton";
 
 // import { useCart } from "@/lib/cart";
 interface ProductDetailProps {
@@ -14,12 +16,29 @@ async function getProduct(id: string): Promise<Product> {
   return data as Product;
 }
 
-export async function generateMetadata({ params }: ProductDetailProps) {
+export async function generateMetadata({
+  params,
+}: ProductDetailProps): Promise<Metadata> {
   const { id } = params;
   const result = await getProduct(id);
   return {
     title: result.name,
     description: result.description,
+    keywords: `${result.name}, ${result.category}`,
+    openGraph: {
+      title: result.name,
+      description: result.description,
+      url: `${process.env.NEXT_PUBLIC_URL}/product/${id}`,
+      images: [
+        {
+          url: result.imageUrl,
+          width: 800,
+          height: 600,
+          alt: result.name,
+        },
+      ],
+      siteName: "Modern-Eshop",
+    },
   };
 }
 
@@ -43,9 +62,7 @@ export default async function Page({ params }: ProductDetailProps) {
       <p className="text-gray-600 mb-4">{product.description}</p>
       {/* <p className="text-lg font-semibold">${product.price.toFixed(2)}</p> */}
       <p className="text-sm text-gray-500 mt-1">Category: {product.category}</p>
-      <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-        Add to Cart
-      </button>
+      <AddToCartButton product={product} />
     </div>
   );
 }
