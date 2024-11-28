@@ -1,16 +1,17 @@
 # Modern E-Shop with Next.js
 
-This is a modern e-shop website built with Next.js, featuring Google login, cart functionality, and MetaMask payment integration.
+This is a modern e-shop website built with Next.js, featuring Google login, cart functionality, and Paypal payment integration.
 
 ## Features
 
 - Modern UI look
+- Carousel
 - Google login (single sign-on method)
 - Product listing
+- Product filter
 - Add product to cart
 - Manage cart (plus/minus/remove products)
 - Checkout process
-- MetaMask payment integration
 - Data storage in Google Firestore
 
 ## Tech Stack
